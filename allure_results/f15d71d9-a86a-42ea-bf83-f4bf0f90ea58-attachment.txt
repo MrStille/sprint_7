@@ -1,0 +1,16 @@
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier
+payload: login=ssjdwqhscl&password=Password123AP&firstName=yskrhkvpgt
+Response:
+Status code: 201
+Body: {"ok":true}
+
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier/login
+payload: login=ssjdwqhscl&password=wrongPass
+Response:
+Status code: 404
+Body: {"code":404,"message":"Учетная запись не найдена"}
+

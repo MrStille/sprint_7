@@ -1,0 +1,16 @@
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier
+payload: login=fnmdsatwri&password=Password123AP&firstName=rutvlntspd
+Response:
+Status code: 201
+Body: {"ok":true}
+
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier/login
+payload: login=&password=Password123AP
+Response:
+Status code: 400
+Body: {"code":400,"message":"Недостаточно данных для входа"}
+

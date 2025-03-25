@@ -1,0 +1,16 @@
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier
+payload: login=ewqwzqlscn&password=Password123AP&firstName=prluezvjat
+Response:
+Status code: 201
+Body: {"ok":true}
+
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier/login
+payload: login=ewqwzqlscn&password=Password123AP
+Response:
+Status code: 200
+Body: {"id":492950}
+

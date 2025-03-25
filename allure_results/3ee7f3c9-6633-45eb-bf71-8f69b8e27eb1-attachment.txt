@@ -1,0 +1,8 @@
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier
+payload: login=vhicntchhy&password=&firstName=ebjfbzvzcu
+Response:
+Status code: 400
+Body: {"code":400,"message":"Недостаточно данных для создания учетной записи"}
+
