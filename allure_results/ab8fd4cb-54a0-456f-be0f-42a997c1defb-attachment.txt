@@ -1,0 +1,8 @@
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier
+payload: login=iknecuvmlx&password=Password123AP&firstName=jvbtxqtttj
+Response:
+Status code: 201
+Body: {"ok":true}
+

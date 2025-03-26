@@ -1,0 +1,16 @@
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier
+payload: login=redequjpot&password=Password123AP&firstName=xkjkpntcti
+Response:
+Status code: 201
+Body: {"ok":true}
+
+
+Request:
+[POST] url: https://qa-scooter.praktikum-services.ru/api/v1/courier
+payload: login=redequjpot&password=Password123AP&firstName=xkjkpntcti
+Response:
+Status code: 409
+Body: {"code":409,"message":"Этот логин уже используется. Попробуйте другой."}
+
