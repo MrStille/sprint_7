@@ -1,7 +1,6 @@
 import random
 import string
 
-
 class ApiHelper:
     @staticmethod
     def random_courier():

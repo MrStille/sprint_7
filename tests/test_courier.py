@@ -7,17 +7,22 @@ from steps.steps import Steps
 @allure.epic('Create - login courier')
 class TestCourier:
 
+    NOT_ENOUGH_DATA_TO_CREATE_COURIER = "Недостаточно данных для создания учетной записи"
+    NOT_ENOUGH_DATA_TO_LOGIN = "Недостаточно данных для входа"
+    USER_NOT_FOUND = "Учетная запись не найдена"
+
     @allure.title("Регистрация нового курьера")
     def test_register_new_courier(self, random_courier):
         response = Steps.create_courier(random_courier)
         assert response.status_code == 201
         assert response.json()["ok"] == True
+        Steps.delete_courier(random_courier)
 
     @allure.title("Нельзя зарегистрировать курьера с ошибочными данным")
     @pytest.mark.parametrize('field, value,expected_code, error',
                              [
-                                 ["login", "", 400, "Недостаточно данных для создания учетной записи"],
-                                 ["password", "", 400, "Недостаточно данных для создания учетной записи"],
+                                 ["login", "", 400, NOT_ENOUGH_DATA_TO_CREATE_COURIER],
+                                 ["password", "", 400, NOT_ENOUGH_DATA_TO_CREATE_COURIER],
                              ])
     def test_register_new_courier_negative(self, random_courier, field, value, expected_code, error):
         random_courier[field] = value
@@ -25,6 +30,7 @@ class TestCourier:
         js = response.json()
         assert response.status_code == expected_code
         assert js["message"] == error
+
 
     @allure.title("Нельзя создать курьера с один и тем же логином")
     def test_cannot_create_courier_with_same_login(self, random_courier):
@@ -41,14 +47,17 @@ class TestCourier:
         assert response_create.json()["ok"] == True
         response = Steps.login_courier(courier)
         assert response.status_code == 200
-        assert response.json()["id"] > 0
+        courier_id = response.json()["id"]
+        assert courier_id > 0
+        Steps.delete_courier_by_id(courier_id)
+
 
     @allure.title("Нельзя зарегистрировать курьера с ошибочными данным")
     @pytest.mark.parametrize('field, value,expected_code, error',
                              [
-                                 ["login", "", 400, "Недостаточно данных для входа"],
-                                 ["password", "", 400, "Недостаточно данных для входа"],
-                                 ["password", "wrongPass", 404, "Учетная запись не найдена"],
+                                 ["login", "", 400, NOT_ENOUGH_DATA_TO_LOGIN],
+                                 ["password", "", 400, NOT_ENOUGH_DATA_TO_LOGIN],
+                                 ["password", "wrongPass", 404, USER_NOT_FOUND],
                              ])
     def test_login_courier_negative(self, random_courier, field, value, expected_code, error):
         response = Steps.create_courier(random_courier)
